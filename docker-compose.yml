@@ -1,0 +1,26 @@
+services:
+  lidarr:
+    image: linuxserver/lidarr:nightly
+    container_name: lidarr
+    environment:
+    - PUID=1000
+    - PGID=1000
+    - TZ=America/Chicago
+    volumes:
+    - /media/Multimedia/Music:/music
+    - /media/Multimedia/Incoming:/downloads
+    - lidarr-extended-swarm_lidarr.config:/config
+    ports:
+    - target: 8686
+      published: 8686
+      protocol: tcp
+      mode: host
+    deploy:
+      placement:
+        constraints:
+        - node.labels.deployment.target.lidarr == true
+      restart_policy:
+        condition: on-failure
+volumes:
+  lidarr-extended-swarm_lidarr.config:
+    name: lidarr-extended-swarm_lidarr.config
