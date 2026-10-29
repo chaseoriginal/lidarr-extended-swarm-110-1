@@ -8,8 +8,8 @@ deployment and polls this repository for changes.
 | Portainer stack id | 18 |
 | Portainer host | ore-dock-110-1 |
 | Endpoint | - (id -) |
-| Swarm | iymtakl6ibno |
-| Live service | lidarr-extended-swarm_lidarr |
+| Swarm | True |
+| Live service | svc:lidarr-extended-swarm_lidarr |
 | Git repo | https://github.com/chaseoriginal/lidarr-extended-swarm-110-1 |
 | Compose file | `docker-compose.yml` |
 | Auto-update poll | every 900s |
@@ -39,8 +39,8 @@ deployment and polls this repository for changes.
 ## Verifying a deployment
 
 ```bash
-docker service ls --filter name=lidarr-extended-swarm_lidarr
-docker service inspect lidarr-extended-swarm_lidarr --format '{{json .Spec.TaskTemplate.ContainerSpec.Mounts}}'
+docker service ls --filter name=svc:lidarr-extended-swarm_lidarr
+docker service inspect svc:lidarr-extended-swarm_lidarr --format '{{json .Spec.TaskTemplate.ContainerSpec.Mounts}}'
 ```
 
 A healthy stack shows `1/1` and the same volume names as before.
